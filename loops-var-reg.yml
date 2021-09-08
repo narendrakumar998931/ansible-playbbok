@@ -1,0 +1,21 @@
+---
+- name: loops in playbook
+  hosts: all
+  become: true
+  gather_facts: no
+  vars:
+    numbers:
+      - "one"
+      - "two"
+      - "three"
+      - "four"
+  tasks:
+
+  - name: display example
+    shell: "echo {{ item }}"
+    loop: "{{ numbers }}" 
+    register: nani
+
+  - name: display the variable
+    debug:
+      var: nani

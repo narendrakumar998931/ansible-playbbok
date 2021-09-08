@@ -1,0 +1,24 @@
+---
+- name: deploy vsftpd into ansiblenode
+  hosts: all
+  become: true
+  vars_files:
+    -  vars/softwarevars
+  tasks:
+
+  - name: install "{{ software }}" 
+    package:
+      name: "{{ software }}"
+      state: latest
+
+  - name: start the "{{ software }}" service
+    service: 
+      name: "{{ software }}"
+      state: restarted
+
+  - name: copy content file to README
+    copy:
+      content: "this is ansible varible file vsftpd playbook"
+      dest: /var/ftp/pub/README
+      mode: 0777
+      owner: root

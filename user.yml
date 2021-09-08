@@ -1,0 +1,9 @@
+---
+- name: adding new user in ansiblenode
+  hosts: all
+  become: true
+  tasks:
+  - name: user add
+    user:
+      name: ansiblenode2
+      

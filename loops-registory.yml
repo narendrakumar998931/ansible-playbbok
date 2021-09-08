@@ -1,0 +1,17 @@
+---
+- name: loops in playbook
+  hosts: all
+  become: true
+  tasks:
+
+  - name: display example
+    shell: "echo {{ item }}"
+    loop: 
+      - "one"
+      - "two"
+      - "three"
+    register: nani
+
+  - name: display the variable
+    debug:
+      var: nani

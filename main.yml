@@ -1,0 +1,20 @@
+---
+- name: install software
+  hosts: all
+  become: true
+  tasks:
+
+  - name: install httpd 
+    yum:
+      name: httpd
+      state: latest
+
+  - name: start the service
+    service:
+      name: httpd
+      state: restarted
+
+  - name: add content to index.hml
+    copy:
+      src: index1.html
+      dest: /var/www/html/index.html

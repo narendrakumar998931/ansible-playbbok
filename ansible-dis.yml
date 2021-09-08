@@ -1,0 +1,12 @@
+---
+- name: ansible distibution
+  hosts: all
+  become: true
+  tasks:
+ 
+  - name: ansible dis
+    debug: msg= "{{ ansible_distribution }}"
+  - name: version
+    debug: msg= "{{ ansible-distribution_version }}"
+  - name: major version
+    debug: msg= "{{ ansible-distribution_major_version }}"    

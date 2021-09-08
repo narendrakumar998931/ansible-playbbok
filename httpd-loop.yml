@@ -1,0 +1,27 @@
+---
+- name: install apache
+  hosts: all
+  gather_facts: yes
+  become: true
+  vars:
+    software1:
+      - apache2
+    software2:
+      - httpd 
+
+  tasks:
+
+  - name: install apache
+    apt:
+      name: "{{ item }}"
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install httpd in centos
+    yum:
+      name: "{{ item }}"
+      state: latest
+    when: ansible_distribution == "Amazon"
+    loop: 
+      - "software1"
+      - "software2"

@@ -1,0 +1,17 @@
+---
+- name: install apache
+  hosts: all
+  tasks:
+
+  - name: install apache
+    apt:
+      name:
+        - apache2
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: install httpd in centos
+    yum:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "Amazon"

@@ -1,0 +1,13 @@
+---
+
+- name: useing varable
+  hosts: all
+  become: true
+  vars:
+    testmess: 'wellcome to ansible'
+  tasks:
+  
+  - name: content 
+    copy:
+      dest: /root/abc.txt
+      content: "{{testmess}}"

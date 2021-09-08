@@ -1,0 +1,48 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  
+  - name: install apache2 and php in ubuntu
+    apt:
+      name:
+        - apache2
+        - libapache2-mod-php
+    when: ansible_distribution == "Ubuntu"
+  - name: install httpd and php in centos
+    yum:
+      name:
+        - httpd
+        - php
+    when: ansible_distribution == "Amazon"
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: install mango-db in ubuntu
+      apt:
+        name: mangodb-server
+        state: latest
+      when: ansible_distribution == "Ubuntu"
+    - name: install mango-db in centos
+      apt:
+        name: mangodb
+        state: latest
+      when: ansible_distribution == "CentOS"
+
+- hosts: all
+  become: true
+  tasks:
+    - name: install file systaem in ubuntu
+      apt:
+        name: samba
+        state: latest
+      when: ansible_distribution == "Ubuntu"
+    - name: install file system in centos
+      yum:
+        name: smaba
+        state: latest
+      when: ansible_distribution == "CentOs"
+
+
+
